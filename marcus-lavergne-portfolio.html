@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marcus Lavergne — Journalist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a18;
+    --ink-mid: #4a4a46;
+    --ink-light: #8a8a84;
+    --paper: #f7f5f0;
+    --paper-mid: #eeebe3;
+    --accent: #b8460f;
+    --accent-light: #f0e8e2;
+    --border: #d8d4ca;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+  }
+
+  .nav-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.75rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 7vw, 68px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-bio {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--ink-mid);
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+  }
+
+  .hero-bio p { margin-bottom: 1.1rem; }
+  .hero-bio p:last-child { margin-bottom: 0; }
+
+  /* HERO SIDEBAR */
+  .hero-sidebar { padding-top: 0.5rem; }
+
+  .sidebar-block {
+    border-top: 1px solid var(--border);
+    padding: 1.25rem 0;
+  }
+
+  .sidebar-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.6rem;
+  }
+
+  .sidebar-value {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .sidebar-value a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .sidebar-value a:hover { text-decoration: underline; }
+
+  .outlet-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .outlet-tag {
+    font-size: 11px;
+    font-weight: 400;
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--ink-mid);
+    background: var(--paper-mid);
+  }
+
+  /* SECTION LAYOUT */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .section-count {
+    font-size: 12px;
+    color: var(--ink-light);
+    letter-spacing: 0.06em;
+  }
+
+  /* AWARDS */
+  .award-item {
+    display: grid;
+    grid-template-columns: 3px 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .award-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .award-bar { background: var(--accent); border-radius: 2px; }
+
+  .award-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+
+  .award-meta {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .award-desc {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  .award-link {
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+
+  .award-link:hover { text-decoration: underline; }
+
+  /* CREDENTIALS GRID */
+  .cred-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+
+  .cred-cell {
+    background: var(--paper);
+    padding: 1.25rem 1.5rem;
+  }
+
+  .cred-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 6px;
+  }
+
+  .cred-value {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  .cred-sub {
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-top: 3px;
+  }
+
+  /* BEATS */
+  .beats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .beat-cell {
+    background: var(--paper);
+    padding: 1.5rem;
+    transition: background 0.2s;
+  }
+
+  .beat-cell:hover { background: var(--accent-light); }
+
+  .beat-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .beat-desc {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+  }
+
+  /* CLIPS */
+  .outlet-group { margin-bottom: 3rem; }
+  .outlet-group:last-child { margin-bottom: 0; }
+
+  .outlet-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.25rem;
+  }
+
+  .outlet-name {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  .outlet-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .clip-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  .clip-item:last-child { border-bottom: none; }
+
+  .clip-date {
+    font-size: 11px;
+    color: var(--ink-light);
+    padding-top: 3px;
+    letter-spacing: 0.04em;
+  }
+
+  .clip-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 5px;
+    line-height: 1.35;
+  }
+
+  .clip-desc {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    margin-bottom: 7px;
+  }
+
+  .clip-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .clip-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--ink-light);
+  }
+
+  .clip-link {
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .clip-link:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 12px;
+    color: var(--ink-light);
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-left { animation: fadeUp 0.7s ease both; }
+  .hero-sidebar { animation: fadeUp 0.7s 0.15s ease both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      padding: 3rem 1.25rem 2.5rem;
+    }
+    .beats-grid { grid-template-columns: 1fr; }
+    .clip-item { grid-template-columns: 60px 1fr; gap: 1rem; }
+    .nav-links { display: none; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Marcus Lavergne</a>
+  <ul class="nav-links">
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#beats">Beats</a></li>
+    <li><a href="#clips">Clips</a></li>
+    <li><a href="mailto:mlavergn21@gmail.com">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Journalist · Radio Host · Writer</div>
+    <h1>Marcus<br><em>Lavergne</em></h1>
+    <div class="hero-bio">
+      <p>Marcus Lavergne spent four formative years as a working journalist — reporting and hosting at KUNR Public Radio, an NPR affiliate in Northern Nevada, covering sports for ESPN Las Vegas under Lotus Broadcasting, and cutting his teeth at the Nevada Sagebrush, UNR's student newspaper. In that time he reported on federal civil rights litigation, environmental science, public health, criminal justice, and culture across one of the most eclectic news markets in the country.</p>
+      <p>After graduating from UNR in 2017 with a B.A. in Journalism, he moved into business development — working across medical devices at Intuitive Surgical, advanced manufacturing at Star Rapid, and now at Sojo, a startup in the short-term rental space. The work has always centered on research, communication, and understanding an audience. Now he's bringing that back to writing.</p>
+      <p>Marcus holds a B.A. in Journalism from the University of Nevada, Reno, where he was a Tony and Linda Bonnici Scholarship recipient and a NAIA Track & Field All-American.</p>
+    </div>
+  </div>
+
+  <div class="hero-sidebar">
+    <div class="sidebar-block">
+      <div class="sidebar-label">Location</div>
+      <div class="sidebar-value">Las Vegas, NV</div>
+    </div>
+    <div class="sidebar-block">
+      <div class="sidebar-label">Contact</div>
+      <div class="sidebar-value">
+        <a href="mailto:mlavergn21@gmail.com">mlavergn21@gmail.com</a><br>
+        775-420-0865
+      </div>
+    </div>
+    <div class="sidebar-block">
+      <div class="sidebar-label">Byline index</div>
+      <div class="sidebar-value">
+        <a href="https://muckrack.com/marcus-lavergne" target="_blank">Muck Rack ↗</a>
+        &nbsp;·&nbsp;
+        <a href="https://www.kunr.org/people/marcus-lavergne" target="_blank">KUNR ↗</a>
+      </div>
+    </div>
+    <div class="sidebar-block">
+      <div class="sidebar-label">Outlets</div>
+      <div class="outlet-tags">
+        <span class="outlet-tag">KUNR / NPR</span>
+        <span class="outlet-tag">Nevada Sagebrush</span>
+        <span class="outlet-tag">ESPN Las Vegas</span>
+      </div>
+    </div>
+    <div class="sidebar-block">
+      <div class="sidebar-label">Education</div>
+      <div class="sidebar-value">B.A. Journalism<br>University of Nevada, Reno · 2017</div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section class="section" id="awards">
+  <div class="section-header">
+    <h2 class="section-title">Awards & Recognition</h2>
+  </div>
+
+  <div class="award-item">
+    <div class="award-bar"></div>
+    <div>
+      <div class="award-name">Outstanding Broadcast Journalism Student of the Year</div>
+      <div class="award-meta">Reynolds School of Journalism, UNR · Savitt Awards · 2017</div>
+      <div class="award-desc">The Reynolds School's highest recognition for a graduating student in the broadcast / electronic media category, presented at the annual Savitt Awards Banquet in Marcus's senior year — the same year he was interning at ESPN Las Vegas as co-host and producer.</div>
+    </div>
+  </div>
+
+  <div class="award-item">
+    <div class="award-bar"></div>
+    <div>
+      <div class="award-name">2nd Place, Community Feature Writing — "Gray Space: Woes of the Undecided"</div>
+      <div class="award-meta">Nevada Press Association Better Newspaper Contest · 2016</div>
+      <div class="award-desc">Placed second in the statewide Community category competing directly against professional journalists at Nevada newspapers — not in a student division. Judges noted the piece showed "good insight into the caucus process" and captured "difficulty in election without going to the national level." Published in the Nevada Sagebrush.</div>
+      <a class="award-link" href="https://nevadapress.com/members/contest/2016-better-newspaper-contest-award-winners/" target="_blank">View official results — nevadapress.com ↗</a>
+    </div>
+  </div>
+
+  <div class="award-item">
+    <div class="award-bar"></div>
+    <div>
+      <div class="award-name">2nd Place, Community News Writing — "Diversity: An Open Conversation"</div>
+      <div class="award-meta">Nevada Press Association Better Newspaper Contest · 2016</div>
+      <div class="award-desc">Second statewide NPA placement in the same contest year, again competing in the Community category against professional news organizations across Nevada. Judges described it as a "solid overview of the issue." Published in the Nevada Sagebrush.</div>
+      <a class="award-link" href="https://nevadapress.com/members/contest/2016-better-newspaper-contest-award-winners/" target="_blank">View official results — nevadapress.com ↗</a>
+    </div>
+  </div>
+
+  <div class="award-item">
+    <div class="award-bar"></div>
+    <div>
+      <div class="award-name">Tony & Linda Bonnici Scholarship</div>
+      <div class="award-meta">Nevada Broadcasters Association · 2013–2017</div>
+      <div class="award-desc">Four-year recipient of the scholarship program founded by Lotus Broadcasting's Tony Bonnici and his wife Linda — the same company that owns ESPN Las Vegas, where Marcus later interned and worked as a co-host and sports show producer.</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- CREDENTIALS -->
+<section class="section" id="credentials">
+  <div class="section-header">
+    <h2 class="section-title">Credentials</h2>
+  </div>
+  <div class="cred-grid">
+    <div class="cred-cell">
+      <div class="cred-label">Degree</div>
+      <div class="cred-value">B.A. in Journalism</div>
+      <div class="cred-sub">University of Nevada, Reno · 2017</div>
+    </div>
+    <div class="cred-cell">
+      <div class="cred-label">Scholarship</div>
+      <div class="cred-value">Tony & Linda Bonnici Scholarship</div>
+      <div class="cred-sub">Nevada Broadcasters Association · 2013–2017</div>
+    </div>
+    <div class="cred-cell">
+      <div class="cred-label">Athletic honor</div>
+      <div class="cred-value">NAIA Track & Field All-American</div>
+      <div class="cred-sub">2012–2013</div>
+    </div>
+    <div class="cred-cell">
+      <div class="cred-label">Muck Rack</div>
+      <div class="cred-value">KUNR · KBAD · Nevada Sagebrush</div>
+      <div class="cred-sub">Verified byline index</div>
+    </div>
+  </div>
+</section>
+
+<!-- BEATS -->
+<section class="section" id="beats">
+  <div class="section-header">
+    <h2 class="section-title">Beats</h2>
+  </div>
+  <div class="beats-grid">
+    <div class="beat-cell">
+      <div class="beat-name">Politics, Policy & Civil Rights</div>
+      <div class="beat-desc">From tribal voting rights litigation in federal court to election night coverage across Washoe County. His most notable work follows two Native American tribes suing Nevada over satellite early-voting access — sourced across federal litigation, tribal leadership, and state election officials.</div>
+    </div>
+    <div class="beat-cell">
+      <div class="beat-name">Environment & Public Health</div>
+      <div class="beat-desc">Covered snowpack research from UNR and the University of Colorado, Lake Tahoe invasive species management, West Nile Virus outbreaks, healthcare affordability in rural Nevada, and a prescription drug ring investigation involving a Reno physician.</div>
+    </div>
+    <div class="beat-cell">
+      <div class="beat-name">Science & Higher Education</div>
+      <div class="beat-desc">Reported on breakthrough breast cancer research at UNR's School of Medicine, a Boeing–UNR drone data-gathering partnership, and a teacher pipeline program designed to put STEM graduates into Nevada classrooms. Comfortable translating complex research for general audiences.</div>
+    </div>
+    <div class="beat-cell">
+      <div class="beat-name">Sports</div>
+      <div class="beat-desc">Reporter and on-air host at ESPN Las Vegas (KWWN 1100 AM / Lotus Broadcasting), covering the UNLV Runnin' Rebels and Nevada Wolf Pack before the Raiders, Golden Knights, and Aces reshaped the market. Game recaps and features on the Las Vegas Sports Network.</div>
+    </div>
+    <div class="beat-cell">
+      <div class="beat-name">Culture & Community</div>
+      <div class="beat-desc">Features on a Buddhist center building community through shared meals in Midtown Reno, controversial changes at Burning Man's 30th year, and a woman who left the Westboro Baptist Church and rebuilt her life in public. A reporter who knows how to slow down and let a scene breathe.</div>
+    </div>
+    <div class="beat-cell" style="background: var(--paper-mid);">
+      <div class="beat-name" style="color: var(--ink-light); font-style: italic; font-size: 14px; padding-top: 0.5rem;">Muck Rack profile indexes the full byline archive across all outlets.</div>
+      <div style="margin-top: 12px;">
+        <a href="https://muckrack.com/marcus-lavergne" target="_blank" class="award-link">muckrack.com/marcus-lavergne ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIPS -->
+<section class="section" id="clips">
+  <div class="section-header">
+    <h2 class="section-title">Selected Clips</h2>
+    <span class="section-count">14 pieces</span>
+  </div>
+
+  <!-- KUNR -->
+  <div class="outlet-group">
+    <div class="outlet-heading">
+      <span class="outlet-name">KUNR Public Radio — NPR</span>
+      <div class="outlet-line"></div>
+      <span class="outlet-name">2015–2017</span>
+    </div>
+
+    <div class="clip-item">
+      <div class="clip-date">Oct 2016</div>
+      <div>
+        <div class="clip-title">Tribes Waiting for Ruling on Voting Access</div>
+        <div class="clip-desc">Federal court hearing on Nevada tribes' request for satellite voting locations ahead of the 2016 general election.</div>
+        <div class="clip-footer">
+          <span class="clip-tag">politics / civil rights</span>
+          <a class="clip-link" href="https://www.kunr.org/politics-and-policy/2016-10-05/tribes-waiting-for-ruling-on-voting-access" target="_blank">kunr.org ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="clip-item">
+      <div class="clip-date">Sep 2016</div>
+      <div>
+        <div class="clip-title">Nevadan Tribes Seek Litigation Over Voting Rights Dispute</div>
+        <div class="clip-desc">First report in a two-part series on the lawsuit filed by Nevada tribes seeking on-reservation early voting access.</div>
+        <div class="clip-footer">
+          <span class="clip-tag">politics / civil rights</span>
+          <a class="clip-link" href="https://www.kunr.org/politics-and-policy/2016-09-09/nevadan-tribes-seek-litigation-over-voting-rights-dispute" target="_blank">kunr.org ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="clip-item">
+      <div class="clip-date">Aug 2016</div>
+      <div>
+        <div class="clip-title">Photos: 20th Annual Lake Tahoe Summit</div>
+        <div class="clip-desc">Photo essay from the summit attended by President Obama, Sen. Harry Reid, and Gov. Jerry Brown — the first time a sitting president participated in the annual event.</div>
+        <div class="clip-footer">
+          <span class="clip-tag">environment / politics</span>
+          <a class="clip-link" href="https://www.kunr.org/post/photos-20th-annual-lake-tahoe-summit" target="_blank">kunr.org ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="clip-item">
+      <div class="clip-date">Aug 2016</div>
+      <div>
+        <div class="clip-title">Study: Snow Melting Earlier in the Year, Leaving Less for Reservoirs</div>
+        <div class="clip-desc">UNR and University of Colorado research showing rising temperatures are shifting snowmelt timing and reducing downstream water availability.</div>
+        <div class="clip-footer">
+          <span class="clip-tag">environment / science</span>
+          <a class="clip-link" href="https://www.kunr.org/energy-and-environment/2016-08-16/study-snow-melting-earlier-in-the-year-leaving-less-for-reservoirs" target="_blank">kunr.org ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="clip-item">
+      <div class="clip-date">Aug 2016</div>
+      <div>
+        <div class="clip-title">Boeing Teams Up with UNR to Improve Drone Data Gathering</div>
+        <div class="clip-desc">Partnership between Boeing's Insitu drone division and UNR aimed at improving unmanned aircraft systems data collection.</div>
+        <div class="clip-footer">
+          <span class="clip-tag">technology / business</span>
+          <a class="clip-link" href="https://www.kunr.org/business-and-economy/2016-08-03/boeing-teams-up-with-unr-to-improve-drone-data-gathering" target="_blank">kunr.org ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="clip-item">
+      <div class="clip-date">Nov 2016</div>
+      <div>
+        <div class="clip-title">Photos: Election Night 2016 in Washoe County</div>
+        <div class="clip-desc">On-the-ground photo coverage of election night as Donald Trump's upset victory became clear across Northern Nevada.</div>
+        <div class="clip-footer">
+          <span class="clip-tag">politics</span>
+          <a class="clip-link" href="https://www.kunr.org/news/2016-11-09/photos-election-night-2016-in-washoe-county" target="_blank">kunr.org ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="clip-item">
+      <div class="clip-date">Jun 2016</div>
+      <div>
+        <div class="clip-title">9 Indicted for Alleged Drug Ring in Reno</div>
+        <div class="clip-desc">Formal charges filed against a Reno physician and eight others in connection with an alleged prescription drug distribution ring.</div>
+        <div class="clip-footer">
+          <span class="clip-tag">crime</span>
+          <a class="clip-link" href="https://www.kunr.org/crime/2016-05-12/9-indicted-for-alleged-drug-ring-in-reno" target="_blank">kunr.org ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="clip-item">
+      <div class="clip-date">Jan 2017</div>
+      <div>
+        <div class="clip-title">Reno Buddhist Center Draws Crowds Through Dharmic Dinners</div>
+        <div class="clip-desc">Feature on a Midtown Reno Buddhist center's communal dining events and the community they've quietly built over time.</div>
+        <div class="clip-footer">
+          <span class="clip-tag">culture / community</span>
+          <a class="clip-link" href="https://www.kunr.org/local-stories/2017-01-12/reno-buddhist-center-draws-crowds-through-dharmic-dinners" target="_blank">kunr.org ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="clip-item">
+      <div class="clip-date">Sep 2015</div>
+      <div>
+        <div class="clip-title">Festival Changes Bug Some Burners</div>
+        <div class="clip-desc">On-the-playa report from Burning Man on controversial changes to healthcare providers, drone permits, and music zone placement for its 30th year.</div>
+        <div class="clip-footer">
+          <span class="clip-tag">culture / events</span>
+          <a class="clip-link" href="https://www.kunr.org/arts-and-culture/2015-09-02/festival-changes-bug-some-burners" target="_blank">kunr.org ↗</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SAGEBRUSH -->
+  <div class="outlet-group">
+    <div class="outlet-heading">
+      <span class="outlet-name">The Nevada Sagebrush</span>
+      <div class="outlet-line"></div>
+      <span class="outlet-name">2015–2016</span>
+    </div>
+
+    <div class="clip-item">
+      <div class="clip-date">Dec 2015</div>
+      <div>
+        <div class="clip-title">Battle for the Breasts: UNR Researchers Work Toward a New Treatment for Breast Cancer</div>
+        <div class="clip-desc">Follow-up investigation into UNR School of Medicine's $3.8M grant-funded breast cancer research and a potential breakthrough in less invasive treatment options.</div>
+        <div class="clip-footer">
+          <span class="clip-tag">science / health</span>
+          <a class="clip-link" href="http://nevadasagebrush.com/blog/2015/12/01/saving-the-breasts-working-against-a-growing-mastectomy-trend/" target="_blank">nevadasagebrush.com ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="clip-item">
+      <div class="clip-date">Mar 2016</div>
+      <div>
+        <div class="clip-title">Picketing for Peace: Leaving Westboro</div>
+        <div class="clip-desc">Profile of Megan Phelps-Roper — granddaughter of Westboro Baptist Church's founder — speaking at UNR about her decision to leave and how she rebuilt her worldview from the outside.</div>
+        <div class="clip-footer">
+          <span class="clip-tag">religion / social issues</span>
+          <a class="clip-link" href="http://nevadasagebrush.com/blog/2016/03/01/picketing-for-peace-leaving-westboro/" target="_blank">nevadasagebrush.com ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="clip-item">
+      <div class="clip-date">Sep 2015</div>
+      <div>
+        <div class="clip-title">Parking Purgatory: Parking Proves to Be a Catalyst for Change at UNR</div>
+        <div class="clip-desc">Campus investigation into the loss of 200 metered spaces and the university's response — solutions-oriented reporting on an issue affecting thousands of students daily.</div>
+        <div class="clip-footer">
+          <span class="clip-tag">campus / investigative</span>
+          <a class="clip-link" href="https://archive.nevadasagebrush.com/blog/2015/09/22/parking-purgatory-parking-proves-to-be-a-catalyst-for-change-at-unr/" target="_blank">archive.nevadasagebrush.com ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="clip-item">
+      <div class="clip-date">Apr 2016</div>
+      <div>
+        <div class="clip-title">Tech Break: Digital Detox Offers Technological Hiatus During a Day of Student Engagement</div>
+        <div class="clip-desc">Feature on a campus Digital Detox event framed against Pew Research data on smartphone saturation and emerging research on tech's effects on young adults.</div>
+        <div class="clip-footer">
+          <span class="clip-tag">technology / campus life</span>
+          <a class="clip-link" href="http://nevadasagebrush.com/blog/2016/04/05/tech-break-digital-detox-offers-technological-hiatus-during-a-day-of-student-engagement/" target="_blank">nevadasagebrush.com ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="clip-item">
+      <div class="clip-date">Feb 2016</div>
+      <div>
+        <div class="clip-title">Crowdfunding Ranks Among Top Investment Options</div>
+        <div class="clip-desc">Business feature on the rise of crowdfunding platforms as a financing vehicle, with projections of $34B+ globally and analysis of rapid growth from 2013 to 2015.</div>
+        <div class="clip-footer">
+          <span class="clip-tag">business / finance</span>
+          <a class="clip-link" href="http://nevadasagebrush.com/blog/2016/02/09/crowdfunding-ranks-among-top-investment-options/" target="_blank">nevadasagebrush.com ↗</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <span>Marcus Lavergne &mdash; Las Vegas, NV</span>
+  <span>
+    <a href="mailto:mlavergn21@gmail.com">mlavergn21@gmail.com</a>
+    &nbsp;·&nbsp;
+    <a href="https://muckrack.com/marcus-lavergne" target="_blank">Muck Rack</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.kunr.org/people/marcus-lavergne" target="_blank">KUNR author page</a>
+  </span>
+</footer>
+
+</body>
+</html>
